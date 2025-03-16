@@ -1,5 +1,5 @@
 # Python Auto-Grader
-![readme-header-image.jpg](assets/readme-header-image.jpg)
+![readme-header-image.jpg](assets/readme-header-image.jpg)\
 *Image provided by [David Mulder](https://www.flickr.com/photos/113026679@N03/26647523637)*
 
 ## Description
