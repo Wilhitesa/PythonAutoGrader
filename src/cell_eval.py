@@ -1,20 +1,37 @@
 import pandas as pd
-
+import openpyxl
+import json
 
 # Read an Excel file and return a pandas DataFrame
-def read_file(file_path: str) -> pd.DataFrame:
-    return pd.read_excel(file_path)
+def read_file(file_path: str) -> openpyxl.Workbook:
+    return openpyxl.open(file_path, read_only=True)
 
 
-# Evaluates an Excel cell in a DataFrame.
-def evaluate_cell(dataframe: pd.DataFrame, value_col: int, value_row: int, simple_value=None, value_tolerance=None,
-                  value_min=None, value_max=None) -> bool:
-    final_max, final_min = 0, 0
-    if simple_value and value_tolerance:
-        final_max = simple_value + value_tolerance
-        final_min = simple_value - value_tolerance
-    elif value_min and value_max:
-        final_max = value_max
-        final_min = value_min
 
-    return final_min <= dataframe.iat[value_row, value_col] <= final_max
+def evaluate_element(vals: json, sheet: openpyxl.Workbook) -> [bool, str]:
+    comment = ""
+    correct = True
+
+    if "simple_value" in vals:
+        minimum = vals["simple_value"]
+        maximum = vals["simple_value"]
+        if "value_tolerance" in vals:
+            minimum = vals["simple_value"] - vals["value_tolerance"]
+            maximum = vals["simple_value"] + vals["value_tolerance"]
+
+        parts = vals["spreadsheet_cell"].split("!")
+        parts[1] = parts[1].replace("$", "")
+
+        num = sheet[parts[0]][parts[1]].value
+
+        correct = minimum <= num <= maximum
+        if not correct:
+            comment += f"Expected value of {vals['simple_value']}, but got {num}. "
+    elif "complex_value" in vals:
+        pass
+    elif "value_min" in vals and "value_max" in vals:
+        pass
+    else:
+        raise Exception("Invalid JSON format")
+
+    return [correct, comment]

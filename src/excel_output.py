@@ -2,6 +2,10 @@ import pandas as pd
 
 # This class is used to output data to an Excel file.
 class ExcelOutput:
+    """
+    A class to handle writing data to an Excel file.
+    """
+
     # initialize the class with a DataFrame
     def __init__(self, dataframe: pd.DataFrame):
         self.dataframe = dataframe

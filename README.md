@@ -89,9 +89,21 @@ python main.py <excel_folder_path> <criteria.json> <final_grade_excel_path>
 - When using `"computed_value"` or `"simple_value"`, the `"value_tolerance"` element is able to be used and optional. 
 - The `"spreadsheet_cell"` element must be a valid Excel cell reference. Sheetname is optional.
 
+### final_grades.xlsx
+
+| Student Filename   | criteria_section_1 | score | comment | criteria_section_2 | score | comment                                                             | criteria_section_3 | score | comment                                                                  |
+|--------------------|--------------------|-------|---------|--------------------|-------|---------------------------------------------------------------------|--------------------|-------|--------------------------------------------------------------------------|
+| student_file1.xlsx | proficient         | 2     |         | proficient         | 2     |                                                                     | proficient         | 1     |                                                                          |
+| student_file2.xlsx | proficient         | 2     |         | novice             | 1     | Your value for element 1 was out of tolerance, expected 2 but got 0 | insufficient       | 0     | Your value for element 1 was out of tolerance, expected 0 to 1 but got 3 |
+
+- `Student Filename` will be the name of the student file.
+- comments can be empty if there are no issues with the grading.
+- `score` will be the number of correct elements the student received for that section.
+
 ## Packages Used
 This project uses the following packages:
 - `pandas` - Data manipulation
+- `openpyxl` - Excel file manipulation'
 
 ## Authors/Collaborators
 - Samuel Wilhite - Full project code
