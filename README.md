@@ -91,14 +91,14 @@ python main.py <excel_folder_path> <criteria.json> <final_grade_excel_path>
 
 ### final_grades.xlsx
 
-| Student Filename   | criteria_section_1 | score | comment | criteria_section_2 | score | comment                                                             | criteria_section_3 | score | comment                                                                  |
-|--------------------|--------------------|-------|---------|--------------------|-------|---------------------------------------------------------------------|--------------------|-------|--------------------------------------------------------------------------|
-| student_file1.xlsx | proficient         | 2     |         | proficient         | 2     |                                                                     | proficient         | 1     |                                                                          |
-| student_file2.xlsx | proficient         | 2     |         | novice             | 1     | Your value for element 1 was out of tolerance, expected 2 but got 0 | insufficient       | 0     | Your value for element 1 was out of tolerance, expected 0 to 1 but got 3 |
+| Student Filename   | criteria_section_1   | score        | comment | criteria_section_2  | score      | comment                                                             | criteria_section_3 | score        | comment                                                                  |
+|--------------------|----------------------|--------------|---------|---------------------|------------|---------------------------------------------------------------------|--------------------|--------------|--------------------------------------------------------------------------|
+| student_file1.xlsx | criteria_section_1   | proficient   |         | criteria_section_2  | proficient |                                                                     | criteria_section_3 | proficient   |                                                                          |
+| student_file2.xlsx | criteria_section_1   | proficient   |         | criteria_section_2  | novice     | Your value for element 1 was out of tolerance, expected 2 but got 0 | criteria_section_3 | insufficient | Your value for element 1 was out of tolerance, expected 0 to 1 but got 3 |
 
 - `Student Filename` will be the name of the student file.
 - comments can be empty if there are no issues with the grading.
-- `score` will be the number of correct elements the student received for that section.
+- `score` will be the name of the grading criteria bracket met by the student's score.
 
 ## Packages Used
 This project uses the following packages:
@@ -108,3 +108,6 @@ This project uses the following packages:
 ## Authors/Collaborators
 - Samuel Wilhite - Full project code
 - Doug Sandy - Project Commissioner/Spreadsheet Design
+
+## Sprint Goals
+- Integrated into one piece of code
