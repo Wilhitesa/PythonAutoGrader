@@ -16,7 +16,6 @@ def main():
     Main function to evaluate student scores based on criteria defined in a JSON file.
     """
     student_files, json_filename, result_loc = get_all_paths()
-    #TODO: retrieve all files in student folder path, then iterate through them with following code
     with open(json_filename) as file:
         file_list = os.listdir(student_files)
 
