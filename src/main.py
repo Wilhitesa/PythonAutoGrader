@@ -1,11 +1,7 @@
+# Imports
 import json
 import os
-import sys
-
 from pandas import DataFrame
-
-from file_retrieval import get_all_paths
-
 from src.cell_eval import evaluate_element, read_file
 from src.excel_output import ExcelOutput
 from src.file_retrieval import get_all_paths
@@ -53,17 +49,21 @@ def main():
                             eval_str = evaluate_criteria(element_value, num_correct)
                             results.append(eval_str)
                             results.append(combined_comments)
-                            # student_scores.append(eval_str)
-                            #print(f"Score for {key}: {eval_str}")
-                            #print(f"Comments for {key}: {combined_comments}")
                 output.add_row(results)
-        output.write(result_loc)
+        output.write(result_loc, json_filename.split("/")[-1].split(".")[0] + "_")  # Adds a prefix to the filename
 
 
 def evaluate_criteria(criteria: json, score: int) -> str:
+    """
+    Retrieves the grading criteria tier from the JSON file based on the score.
+    :param criteria: A JSON object containing grading criteria. See "grading_criteria" in the JSON file example in the README.md.
+    :param score: The score to evaluate against the criteria.
+    :return: The string representation of the grading criteria tier.
+    """
     for criteria_key, criteria_value in criteria.items():
         if score >= criteria_value["required_count"]:
-            return criteria_key
+            return str(criteria_key)
+    return "Error: No criteria met"
 
 
 if __name__ == "__main__":

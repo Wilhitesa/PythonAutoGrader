@@ -1,19 +1,32 @@
-import pandas as pd
 import openpyxl
 import json
-
-from numpy.ma.core import maximum
+import os
 
 
 # Read an Excel file and return a pandas DataFrame
 def read_file(file_path: str) -> openpyxl.Workbook:
-    return openpyxl.open(file_path, read_only=True)
+    """
+    Reads the filepath for an Excel file and returns a workbook object.
+    :param file_path: The path to the Excel file.
+    :return: openpyxl.Workbook - A workbook object.
+    """
+    # Ensure the file path is an excel file and exists
+    if not os.path.exists(file_path):
+        raise Exception("File does not exist")
+    if not file_path.endswith(".xlsx"):
+        raise Exception("File is not an Excel file")
+
+    return openpyxl.open(file_path, read_only=True, data_only=True)
 
 
-
-def evaluate_element(vals: json, sheet: openpyxl.Workbook) -> [bool, str]:
+def evaluate_element(vals: json, sheet: openpyxl.Workbook) -> tuple[bool, str]:
+    """
+    Evaluates a cell in an Excel sheet based on the provided JSON values. See provided README for JSON structure.
+    :param vals: The JSON object that contains the cell evaluation criteria.
+    :param sheet: The Excel sheet to evaluate.
+    :return: A tuple containing a boolean indicating if the evaluation passed and a comment string. Comment is empty if passed.
+    """
     comment = ""
-    correct = True
 
     if "simple_value" in vals:
         minimum = vals["simple_value"]
@@ -71,4 +84,4 @@ def evaluate_element(vals: json, sheet: openpyxl.Workbook) -> [bool, str]:
     else:
         raise Exception("Invalid JSON format")
 
-    return [correct, comment]
+    return correct, comment
