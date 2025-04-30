@@ -1,3 +1,9 @@
+"""
+Name: file_retrieval.py
+Author: Samuel Wilhite
+Date: 04/29/2025
+Description: This file is for GUI file selection.
+"""
 from tkinter import filedialog, Tk
 
 def get_all_paths() -> tuple[str, str, str]:
@@ -13,9 +19,6 @@ def get_all_paths() -> tuple[str, str, str]:
     root.destroy()
 
     return folder_path, file_path, result_location
-
-
-
 
 if __name__ == "__main__":
     folder, file, result = get_all_paths()

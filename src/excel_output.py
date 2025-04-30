@@ -1,7 +1,13 @@
+"""
+Name: excel_output.py
+Author: Samuel Wilhite
+Date: 04/29/2025
+Description: This file is for functions related to Excel file writing.
+"""
 import json
 import pandas as pd
 
-# This class is used to output data to an Excel file.
+
 class ExcelOutput:
     """
     A class to handle writing data to an Excel file.

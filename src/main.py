@@ -1,4 +1,9 @@
-# Imports
+"""
+Name: main.py
+Author: Samuel Wilhite
+Date: 04/29/2025
+Description: This is the main file, used for running the program as well as any simple arithemetic operations.
+"""
 import json
 import os
 from pandas import DataFrame

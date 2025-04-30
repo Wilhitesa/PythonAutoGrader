@@ -1,3 +1,9 @@
+"""
+Name: cell_eval.py
+Author: Samuel Wilhite
+Date: 04/29/2025
+Description: This file is for all functions related to Excel file reading and cell evaluation.
+"""
 import openpyxl
 import json
 import os
